@@ -19,4 +19,16 @@ public class LicensePlate {
         return country + " " + liNumber;
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof LicensePlate)) return false;
+
+        LicensePlate lpc = (LicensePlate) obj;
+        return this.country.equals(lpc.country) && this.liNumber.equals(lpc.liNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(liNumber, country);
+    }
 }

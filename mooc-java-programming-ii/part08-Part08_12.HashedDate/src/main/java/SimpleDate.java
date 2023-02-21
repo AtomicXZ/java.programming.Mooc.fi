@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class SimpleDate {
 
@@ -51,4 +52,15 @@ public class SimpleDate {
         return this.year - other.year - yearRemoved;
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof SimpleDate)) return false;
+
+        SimpleDate comparedDate = (SimpleDate) obj;
+        return this.day == comparedDate.day && this.month == comparedDate.month && this.year == comparedDate.year;
+    }
+
+    public int hashCode() {
+        return Objects.hash(this.day, this.month, this.year);
+    }
 }
