@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Hold {
 
-    private ArrayList<Suitcase> suitcases;
-    private int maximumWeight;
+    private final ArrayList<Suitcase> suitcases;
+    private final int maximumWeight;
 
     public Hold(int maximumWeight) {
         this.maximumWeight = maximumWeight;
@@ -21,21 +21,11 @@ public class Hold {
     }
 
     public int totalWeight() {
-        int summa = 0;
-        int indeksi = 0;
-        while (indeksi < this.suitcases.size()) {
-        summa += this.suitcases.get(indeksi).totalWeight();
-        indeksi++;
-        }
-        return summa;
+        return this.suitcases.stream().map(Suitcase::totalWeight).reduce(0, (a, b) -> a + b);
     }
 
     public void printItems() {
-        int indeksi = 0;
-        while (indeksi < this.suitcases.size()) {
-        this.suitcases.get(indeksi).printItems();
-        indeksi++;
-        }
+        this.suitcases.stream().forEach(Suitcase::printItems);
     }
 
     @Override
