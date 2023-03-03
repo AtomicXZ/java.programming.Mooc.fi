@@ -15,17 +15,42 @@ public class MagicSquare {
         this.square = new int[size][size];
     }
 
-    // implement these three methods
     public ArrayList<Integer> sumsOfRows() {
-        return new ArrayList<>();
+        ArrayList<Integer> sumOfRows = new ArrayList<>();
+        for (int i = 0; i < this.square.length; i++) {
+            int currentRowSum = 0;
+            for (int j = 0; j < this.square[i].length; j++) {
+                currentRowSum += this.square[i][j];
+            }
+            sumOfRows.add(currentRowSum);
+        }
+        return sumOfRows;
     }
 
     public ArrayList<Integer> sumsOfColumns() {
-        return new ArrayList<>();
+        ArrayList<Integer> sumOfColumns = new ArrayList<>();
+        for (int i = 0; i < this.square.length; i++) {
+            int currentColumnSum = 0;
+            for (int j = 0; j < this.square[i].length; j++) {
+                currentColumnSum += this.square[j][i];
+            }
+            sumOfColumns.add(currentColumnSum);
+        }
+        return sumOfColumns;
     }
 
     public ArrayList<Integer> sumsOfDiagonals() {
-        return new ArrayList<>();
+        ArrayList<Integer> sumOfDiagonals = new ArrayList<>();
+        int leftDiagonalSum = 0;
+        int rightDiagonalSum = 0;
+
+        for (int j = 0; j < this.square.length; j++) {
+            leftDiagonalSum += this.square[j][j];
+            rightDiagonalSum += this.square[j][this.square.length - j - 1];
+        }
+        sumOfDiagonals.add(leftDiagonalSum); sumOfDiagonals.add(rightDiagonalSum);
+
+        return sumOfDiagonals;
     }
 
     // ready-made helper methods -- don't touch these
@@ -102,15 +127,15 @@ public class MagicSquare {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (int row = 0; row < square.length; row++) {
-            for (int col = 0; col < square[row].length; col++) {
-                result.append(square[row][col]).append("\t");
-            }
+        StringBuilder toReturn = new StringBuilder();
 
-            result.append("\n");
+        for (int i = 0; i < this.square.length; i++) {
+            for (int j = 0; j < this.square[i].length; j++) {
+                toReturn.append(this.square[i][j]).append("\t");
+            }
+            toReturn.append("\n");
         }
 
-        return result.toString();
+        return toReturn.toString();
     }
 }
